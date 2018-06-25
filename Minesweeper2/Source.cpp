@@ -147,6 +147,26 @@ bool isHoverBtn(int wx, int wy)
 	return false;
 }
 
+int isHoverModeBtn(int wx, int wy)
+{
+	point w = { wx, wy };
+	point c = convertCoordWindowToClip(w);
+
+	if (c.x >= modeBtn[0].cx_bot_left && c.x <= modeBtn[0].cx_top_right && c.y >= modeBtn[0].cy_bot_left && c.y <= modeBtn[0].cy_top_right)
+	{
+		return 0;
+	}
+	else if (c.x >= modeBtn[1].cx_bot_left && c.x <= modeBtn[1].cx_top_right && c.y >= modeBtn[1].cy_bot_left && c.y <= modeBtn[1].cy_top_right)
+	{
+		return 1;
+	}
+	else if (c.x >= modeBtn[2].cx_bot_left && c.x <= modeBtn[2].cx_top_right && c.y >= modeBtn[2].cy_bot_left && c.y <= modeBtn[2].cy_top_right)
+	{
+		return 2;
+	}
+	return -1;
+}
+
 /* Handler for window-repaint event. Call back when the window first appears and
 whenever the window needs to be re-painted. */
 void display() {
@@ -240,6 +260,43 @@ void passiveMotion(int wx, int wy)
 		smile.isHover = false;
 		buttonHover(smile);
 	}
+	else
+	{
+		
+			if (!modeBtn[0].isHover && isHoverModeBtn(wx, wy) == 0)
+			{
+				modeBtn[0].isHover = true;
+				buttonHover(modeBtn[0], border_array[0], hover_array[0], color_array[0], s0, pad_left[0]);
+			}
+			else if (modeBtn[0].isHover && isHoverModeBtn(wx, wy) != 0)
+			{
+				modeBtn[0].isHover = false;
+				buttonHover(modeBtn[0], border_array[0], fill_array[0], color_array[0], s0, pad_left[0]);
+			}
+			if (!modeBtn[1].isHover && isHoverModeBtn(wx, wy) == 1)
+			{
+				modeBtn[1].isHover = true;
+				buttonHover(modeBtn[1], border_array[1], hover_array[1], color_array[1], s1, pad_left[1]);
+			}
+			else if (modeBtn[1].isHover && isHoverModeBtn(wx, wy) != 1)
+			{
+				modeBtn[1].isHover = false;
+				buttonHover(modeBtn[1], border_array[1], fill_array[1], color_array[1], s1, pad_left[1]);
+			}
+			if (!modeBtn[2].isHover && isHoverModeBtn(wx, wy) == 2)
+			{
+				modeBtn[2].isHover = true;
+				buttonHover(modeBtn[2], border_array[2], hover_array[2], color_array[2], s2, pad_left[2]);
+			}
+			else if (modeBtn[2].isHover && isHoverModeBtn(wx, wy) != 2)
+			{
+				modeBtn[2].isHover = false;
+				buttonHover(modeBtn[2], border_array[2], fill_array[2], color_array[2], s2, pad_left[2]);
+			}
+
+
+	}
+	
 }
 
 /* Handler for window re-size event. Called back when the window first appears and
