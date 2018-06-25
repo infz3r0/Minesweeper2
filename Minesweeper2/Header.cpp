@@ -42,6 +42,17 @@ int pad_left[3] = {
 	(modeBtn[2].cx_top_right - modeBtn[2].cx_bot_left - 64) / 2
 };
 
+void initBtn()
+{
+	modeBtn[0] = { (float)1, (float)(screenH - 25), (float)(screenW / 3), (float)(screenH - 1) };
+	modeBtn[1] = { (float)(screenW / 3 + 1), (float)(screenH - 25), (float)(screenW * 2 / 3 + 1), (float)(screenH - 1) };
+	modeBtn[2] = { (float)(screenW * 2 / 3 + 2), (float)(screenH - 25), (float)screenW, (float)(screenH - 1) };
+
+	pad_left[0] = (modeBtn[0].cx_top_right - modeBtn[0].cx_bot_left - 63) / 2;
+	pad_left[1] = (modeBtn[1].cx_top_right - modeBtn[1].cx_bot_left - 45) / 2;
+	pad_left[2] = (modeBtn[2].cx_top_right - modeBtn[2].cx_bot_left - 64) / 2;
+}
+
 void drawBox(int cx_bot_left, int cy_bot_left, int cx_top_right, int cy_top_right, rgb border, rgb fill)
 {
 	//Box

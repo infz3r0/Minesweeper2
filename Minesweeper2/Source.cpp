@@ -29,7 +29,30 @@ void restart()
 	initArray(array);
 	resetFlag(flag);
 	gameover = false;
+	
 	glutPostRedisplay();
+}
+
+void changeMode(MODE m)
+{
+	switch (m)
+	{
+	case BEGINNER:
+		initBase(BEGINNER);		
+		break;
+	case INTERMEDIATE:
+		initBase(INTERMEDIATE);
+		break;
+	case ADVANCED:
+		initBase(ADVANCED);
+		break;
+	default:
+		break;
+	}
+	glutReshapeWindow(screenW, screenH);
+	initBtn();
+	initGL();
+	restart();
 }
 
 void checkGameOver()
@@ -199,6 +222,24 @@ void mouse(int button, int state, int wx, int wy)
 			{
 				buttonPressing(smile);
 				restart();
+			}
+
+			if (isHoverModeBtn(wx, wy) != -1)
+			{
+				switch (isHoverModeBtn(wx, wy))
+				{
+				case 0:
+					changeMode(BEGINNER);
+					break;
+				case 1:
+					changeMode(INTERMEDIATE);
+					break;
+				case 2:
+					changeMode(ADVANCED);
+					break;
+				default:
+					break;
+				}
 			}
 			
 			if (!gameover)

@@ -4,8 +4,8 @@
 bool isDevMode = false;
 
 //default mode
-int col = mode[ADVANCED].col;
-int row = mode[ADVANCED].row;
+int col = mode[BEGINNER].col;
+int row = mode[BEGINNER].row;
 int mines = mode[BEGINNER].mines;
 
 int squareLength = 20;
@@ -18,6 +18,21 @@ GLdouble left = 0;
 GLdouble right = screenW;
 GLdouble bottom = 0;
 GLdouble top = screenH;
+
+void initBase(MODE m)
+{
+	col = mode[m].col;
+	row = mode[m].row;
+	mines = mode[m].mines;
+
+	screenW = (col + 1) * squareLength;
+	screenH = (row + 1) * squareLength + header;
+
+	left = 0;
+	right = screenW;
+	bottom = 0;
+	top = screenH;
+}
 
 int randomNumber(int a, int b)
 {

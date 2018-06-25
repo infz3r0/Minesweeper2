@@ -34,6 +34,8 @@ extern const char s0[18];
 extern const char s1[18];
 extern const char s2[18];
 
+void initBtn();
+
 button drawButtonSmile(float cx, float cy, float r);
 
 void buttonHover(button btn);

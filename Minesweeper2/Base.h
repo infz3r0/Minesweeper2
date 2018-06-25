@@ -63,6 +63,8 @@ typedef struct POINT {
 	int y;
 } point;
 
+void initBase(MODE m);
+
 // Tọa độ window -> openGL
 point convertCoordWindowToClip(point window);
 

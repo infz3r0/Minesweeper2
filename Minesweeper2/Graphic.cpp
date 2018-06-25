@@ -6,6 +6,8 @@ int maxY = screenH - header;
 void initGL() {
 	// Set "clearing" or background color
 	glClearColor(0.95f, 0.95f, 0.95f, 1.0f); // Black and opaque
+	maxX = screenW;
+	maxY = screenH - header;
 }
 
 void drawBoard()
