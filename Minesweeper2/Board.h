@@ -15,6 +15,8 @@ Giá trị mảng array
 // Khởi tạo mảng, bom ngẫu nhiên
 void initArray(int a[][col]);
 
+void resetFlag(int flag[][col]);
+
 // Hiện mảng trên console
 void showArray(int a[][col]);
 

@@ -285,7 +285,12 @@ void drawFlag(int x, int y)
 
 void toggleFlag(int wx, int wy)
 {
-	point w = { wx, wy };
+	if (!isValidClick(wx, wy))
+	{
+		return;
+	}
+
+	point w = { wx, wy };	
 	point c = convertCoordWindowToClip(w);
 	point index = clipToIndex(c);
 

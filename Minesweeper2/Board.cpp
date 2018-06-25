@@ -5,8 +5,16 @@ int flag[row][col];
 
 void initArray(int a[][col])
 {
-	srand(time(NULL));
 	int i, j;
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			a[i][j] = 0;
+		}
+	}
+
+	srand(time(NULL));
 	int c = 0;
 	int l = 0;
 
@@ -133,4 +141,16 @@ bool isValidClick(int wx, int wy)
 		return true;
 	}
 	return false;
+}
+
+void resetFlag(int flag[][col])
+{
+	int i, j;
+	for (i = 0; i < row; i++)
+	{
+		for (j = 0; j < col; j++)
+		{
+			flag[i][j] = 0;
+		}
+	}
 }

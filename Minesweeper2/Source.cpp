@@ -1,4 +1,7 @@
 ﻿#include "Graphic.h"
+#include "Header.h"
+
+bool gameover = false;
 
 void gameOver(bool isWin)
 {
@@ -18,7 +21,14 @@ void gameOver(bool isWin)
 	
 	drawString(s, 10, 50);
 	//stop mouse event
-	glutMouseFunc(NULL);
+	gameover = true;
+}
+
+void restart()
+{
+	initArray(array);
+	resetFlag(flag);
+	glutPostRedisplay();
 }
 
 void checkGameOver()
@@ -119,6 +129,24 @@ void openSquare(int wx, int wy)
 	}
 }
 
+bool isHoverBtn(int wx, int wy)
+{
+	point w = { wx, wy };
+	point c = convertCoordWindowToClip(w);
+
+	if (isDevMode)
+	{
+		printf("\nmouse:%d-%d", c.x, c.y);
+		printf("\nbutton:bot-%f-%f, top-%f-%f", smile.cx_bot_left, smile.cy_bot_left, smile.cx_top_right, smile.cy_top_right);;
+	}
+	if (c.x >= smile.cx_bot_left && c.x <= smile.cx_top_right && c.y >= smile.cy_bot_left && c.y <= smile.cy_top_right)
+	{
+		printf("\n[BUTTON]");
+		return true;
+	}
+	return false;
+}
+
 /* Handler for window-repaint event. Call back when the window first appears and
 whenever the window needs to be re-painted. */
 void display() {
@@ -127,24 +155,89 @@ void display() {
 	drawBoard();
 	drawSquare();
 	updateMines();
+	smile = drawButtonSmile(screenW / 2, screenH - 40, 25);
 
 	printf("\n[DISPLAY]");
 }
 
 void mouse(int button, int state, int wx, int wy)
 {
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {		
-		openSquare(wx, wy);
-		checkGameOver();
+	/*
+	*	has the button been pressed or released?
+	*/
+	if (state == GLUT_DOWN)
+	{
+		/*
+		*	Which button was pressed?
+		*/
+		switch (button)
+		{
+		case GLUT_LEFT_BUTTON:
+			if (isHoverBtn(wx, wy))
+			{
+				buttonPressing(smile);
+				restart();
+			}
+			
+			if (!gameover)
+			{
+				openSquare(wx, wy);
+				checkGameOver();
+			}
+			
+			break;
+		case GLUT_MIDDLE_BUTTON:
+			printf("middle ");
+			break;
+		case GLUT_RIGHT_BUTTON:
+			if (!gameover)
+			{
+				toggleFlag(wx, wy);
+			}
+			
+			break;
+		}
 	}
-	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) {
-		toggleFlag(wx, wy);
+	else
+	{
+		/*
+		*	Which button was released?
+		*/
+		switch (button)
+		{
+		case GLUT_LEFT_BUTTON:
+			if (isHoverBtn(wx, wy))
+			{
+				buttonHover(smile);
+			}
+			break;
+		case GLUT_MIDDLE_BUTTON:
+			printf("middle ");
+			break;
+		case GLUT_RIGHT_BUTTON:
+			printf("right ");
+			break;
+		}
 	}
 }
 
 void motion(int x, int y)
 {
 	
+}
+
+void passiveMotion(int wx, int wy)
+{
+	if (isHoverBtn(wx, wy) && !smile.isHover)
+	{
+		smile.isHover = true;
+		buttonHover(smile);
+	}
+	else if (!isHoverBtn(wx, wy) && smile.isHover)
+	{
+		smile.isHover = false;
+		buttonHover(smile);
+	}
 }
 
 /* Handler for window re-size event. Called back when the window first appears and
@@ -191,6 +284,7 @@ int main(int argc, char** argv) {
 	glutReshapeFunc(reshape);       // Register callback handler for window re-size event
 	glutMouseFunc(mouse);
 	glutMotionFunc(motion);
+	glutPassiveMotionFunc(passiveMotion);
 
 	initGL();
 	glutMainLoop();           // Enter the event-processing loop

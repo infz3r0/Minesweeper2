@@ -1,7 +1,7 @@
 
 #include "Base.h"
 
-bool isDevMode = false;
+bool isDevMode = true;
 
 int mines = 10;
 
