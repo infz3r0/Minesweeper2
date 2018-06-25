@@ -1,9 +1,9 @@
 
 #include "Base.h"
 
-bool isDevMode = true;
+bool isDevMode = false;
 
-int mines = 10;
+int mines = 40;
 
 int squareLength = 20;
 int border = squareLength / 2;

@@ -9,11 +9,17 @@
 extern bool isDevMode;
 
 /*
+GAME MODE:
+BEGINER 9x9 10
+INTERMEDIATE 16x16 40
+ADVANCED 16rx30c 99
+*/
+/*
 Số dòng, cột
 Số lượng bom
 */
-const int col = 9;
-const int row = 9;
+const int col = 16;
+const int row = 16;
 extern int mines;
 
 // Kích thước ô

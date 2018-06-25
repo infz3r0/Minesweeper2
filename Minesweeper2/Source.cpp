@@ -272,7 +272,7 @@ void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integ
 /* Main function: GLUT runs as a console application starting at main()  */
 int main(int argc, char** argv) {
 	initArray(array);
-	//showArray(array);
+	showArray(array);
 
 	glutInit(&argc, argv);          // Initialize GLUT
 	//glutInitDisplayMode(GLUT_DOUBLE);  // Enable double buffered mode
