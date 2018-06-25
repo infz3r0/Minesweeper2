@@ -3,7 +3,10 @@
 
 bool isDevMode = false;
 
-int mines = 99;
+//default mode
+int col = mode[ADVANCED].col;
+int row = mode[ADVANCED].row;
+int mines = mode[BEGINNER].mines;
 
 int squareLength = 20;
 int border = squareLength / 2;

@@ -1,9 +1,9 @@
 #include "Board.h"
 
-int array[row][col];
-int flag[row][col];
+int array[40][40];
+int flag[40][40];
 
-void initArray(int a[][col])
+void initArray(int a[][40])
 {
 	int i, j;
 	for (i = 0; i < row; i++)
@@ -40,7 +40,7 @@ void initArray(int a[][col])
 
 }
 
-void showArray(int a[][col])
+void showArray(int a[][40])
 {
 	int i, j;
 	for (i = 0; i < row; i++)
@@ -53,7 +53,7 @@ void showArray(int a[][col])
 	}
 }
 
-int countMines(int a[][col], int x, int y)
+int countMines(int a[][40], int x, int y)
 {
 	//calculate i, j from x, y
 	x -= squareLength / 2;
@@ -92,7 +92,7 @@ int countMines(int a[][col], int x, int y)
 	return count;
 }
 
-bool isMine(int a[][col], int wx, int wy)
+bool isMine(int a[][40], int wx, int wy)
 {
 	//calculate i, j from x, y
 	point w = { wx, wy };
@@ -110,7 +110,7 @@ bool isMine(int a[][col], int wx, int wy)
 	return false;
 }
 
-bool isOpened(int a[][col], int wx, int wy)
+bool isOpened(int a[][40], int wx, int wy)
 {
 	//calculate i, j from x, y
 	point w = { wx, wy };
@@ -143,7 +143,7 @@ bool isValidClick(int wx, int wy)
 	return false;
 }
 
-void resetFlag(int flag[][col])
+void resetFlag(int flag[][40])
 {
 	int i, j;
 	for (i = 0; i < row; i++)

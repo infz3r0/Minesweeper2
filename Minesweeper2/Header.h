@@ -22,8 +22,14 @@ typedef struct RGB
 
 extern button smile;
 
+extern button modeBtn[3];
+
 button drawButtonSmile(float cx, float cy, float r);
 
 void buttonHover(button btn);
 
 void buttonPressing(button btn);
+
+void drawModeBtn();
+
+void drawString(char *s, int x, int y, rgb color, int padding_left);

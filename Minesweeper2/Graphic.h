@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include<string.h>
+
 #include "Board.h"
 
 extern int maxX;

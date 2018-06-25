@@ -2,8 +2,8 @@
 
 #include "Base.h"
 
-extern int array[row][col];
-extern int flag[row][col];
+extern int array[40][40];
+extern int flag[40][40];
 
 /*
 Giá trị mảng array
@@ -13,21 +13,21 @@ Giá trị mảng array
 */
 
 // Khởi tạo mảng, bom ngẫu nhiên
-void initArray(int a[][col]);
+void initArray(int a[][40]);
 
-void resetFlag(int flag[][col]);
+void resetFlag(int flag[][40]);
 
 // Hiện mảng trên console
-void showArray(int a[][col]);
+void showArray(int a[][40]);
 
 // Đếm số bom xung quanh ô
-int countMines(int a[][col], int x, int y);
+int countMines(int a[][40], int x, int y);
 
 // Kiểm tra ô có bom không
-bool isMine(int a[][col], int wx, int wy);
+bool isMine(int a[][40], int wx, int wy);
 
 // Kiểm tra ô đã được mở chưa
-bool isOpened(int a[][col], int wx, int wy);
+bool isOpened(int a[][40], int wx, int wy);
 
 // Kiểm tra tọa độ click trong phạm vi board không
 bool isValidClick(int wx, int wy);

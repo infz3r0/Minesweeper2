@@ -142,7 +142,6 @@ bool isHoverBtn(int wx, int wy)
 	}
 	if (c.x >= smile.cx_bot_left && c.x <= smile.cx_top_right && c.y >= smile.cy_bot_left && c.y <= smile.cy_top_right)
 	{
-		printf("\n[BUTTON]");
 		return true;
 	}
 	return false;
@@ -156,7 +155,9 @@ void display() {
 	drawBoard();
 	drawSquare();
 	updateMines();
-	smile = drawButtonSmile(screenW / 2, screenH - 40, 25);
+	smile = drawButtonSmile(screenW / 2, screenH - 70, 25);
+
+	drawModeBtn();
 
 	printf("\n[DISPLAY]");
 }
@@ -273,12 +274,12 @@ void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integ
 /* Main function: GLUT runs as a console application starting at main()  */
 int main(int argc, char** argv) {
 	initArray(array);
-	showArray(array);
+	//showArray(array);
 
 	glutInit(&argc, argv);          // Initialize GLUT
 	//glutInitDisplayMode(GLUT_DOUBLE);  // Enable double buffered mode
 	glutInitWindowSize(screenW, screenH);   // Set the window's initial width & height - non-square
-	glutInitWindowPosition(800, 50); // Position the window's initial top-left corner
+	glutInitWindowPosition(500, 50); // Position the window's initial top-left corner
 	glutCreateWindow("Testing");  // Create window with the given title
 
 	glutDisplayFunc(display);       // Register callback handler for window re-paint event

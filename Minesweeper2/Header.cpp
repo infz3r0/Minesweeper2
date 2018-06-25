@@ -2,6 +2,12 @@
 
 button smile = { 0,0,0,0 };
 
+button modeBtn[3] = {
+	{ 1, screenH - 25, screenW / 3, screenH - 1 },
+	{ screenW / 3 + 1, screenH - 25, screenW * 2 / 3 + 1, screenH - 1 },
+	{ screenW * 2 / 3 + 2, screenH - 25, screenW, screenH - 1 }
+};
+
 void drawBox(int cx_bot_left, int cy_bot_left, int cx_top_right, int cy_top_right, rgb border, rgb fill)
 {
 	//Box
@@ -133,7 +139,7 @@ void drawSmile(int cx, int cy, float r)
 }
 
 void buttonHover(button btn)
-{					  
+{
 	if (btn.isHover)
 	{
 		rgb border = { 0.7f, 0.7f, 0.7f };
@@ -158,7 +164,7 @@ void buttonHover(button btn)
 
 		drawSmile(cx, cy, 25);
 	}
-	
+
 }
 
 void buttonPressing(button btn)
@@ -190,8 +196,70 @@ button drawButtonSmile(float cx, float cy, float r)
 
 	drawBox(smile.cx_bot_left, smile.cy_bot_left, smile.cx_top_right, smile.cy_top_right, border, fill);
 
-	drawSmile(cx, cy, r);	
+	drawSmile(cx, cy, r);
 
 	return smile;
 }
 
+void drawString(char *s, int cx, int cy, rgb color, int padding_left)
+{
+	int len = (int)strlen(s);
+
+	int padding_bot = 7;
+
+	glColor3f(color.r, color.g, color.b);
+	glRasterPos2i(cx + padding_left, cy + padding_bot);
+	for (int i = 0; i < len; i++)
+	{
+		glutBitmapCharacter(GLUT_BITMAP_8_BY_13, s[i]);
+
+		if (isDevMode)
+			printf("%c", s[i]);
+
+	}
+
+	glFlush();
+}
+
+void drawModeBtn()
+{
+
+	rgb border_array[3] = {
+		{0, 0.75f, 0},
+		{1.0f, 0.8f, 0.1f},
+		{1, 0, 0},
+	};
+
+	rgb fill_array[3] = {
+		{ 1, 1, 1 },
+		{ 1, 1, 1 },
+		{ 1, 1, 1 }
+	};
+
+	for (int i = 0; i < 3; i++)
+	{
+		drawBox(modeBtn[i].cx_bot_left, modeBtn[i].cy_bot_left, modeBtn[i].cx_top_right, modeBtn[i].cy_top_right, border_array[i], fill_array[i]);
+	}
+
+	rgb color_array[3] = {
+		{ 0, 0.5f, 0 },
+		{ 1.0f, 0.45f, 0.0f },
+		{ 0.95f, 0, 0 },
+	};
+
+	int pad_left;
+	int buf;
+	char s[18];
+	buf = sprintf_s(s, 18, "Beginner"); // 63
+	pad_left = (modeBtn[0].cx_top_right - modeBtn[0].cx_bot_left - 63 ) / 2;
+	drawString(s, modeBtn[0].cx_bot_left, modeBtn[0].cy_bot_left, color_array[0], pad_left);
+
+	buf = sprintf_s(s, 18, "Normal"); // 45
+	pad_left = (modeBtn[1].cx_top_right - modeBtn[1].cx_bot_left - 45) / 2;
+	drawString(s, modeBtn[1].cx_bot_left, modeBtn[1].cy_bot_left, color_array[1], pad_left);
+
+	buf = sprintf_s(s, 18, "Advanced"); // 64
+	pad_left = (modeBtn[2].cx_top_right - modeBtn[2].cx_bot_left - 64 ) / 2;
+	drawString(s, modeBtn[2].cx_bot_left, modeBtn[2].cy_bot_left, color_array[2], pad_left);
+
+}

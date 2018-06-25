@@ -231,7 +231,7 @@ void updateMines()
 	buf = sprintf_s(s, 18, "Mines left: %d", minesLeft);
 
 	clearString(10, 102);
-	drawString(s, 10, 100);
+	drawString(s, 10, header);
 }
 
 void drawFlag(int x, int y)

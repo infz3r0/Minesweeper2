@@ -5,6 +5,7 @@
 #include<GL/glut.h>
 #include<stdio.h>
 #include<time.h>
+#include<string.h>
 
 extern bool isDevMode;
 
@@ -18,8 +19,28 @@ ADVANCED 16rx30c 99
 Số dòng, cột
 Số lượng bom
 */
-const int col = 30;
-const int row = 16;
+typedef struct GAMEMODE
+{
+	const int row;
+	const int col;
+	const int mines;
+} gamemode;
+
+enum MODE
+{
+	BEGINNER,
+	INTERMEDIATE,
+	ADVANCED
+};
+
+const gamemode mode[3] = {
+	{9, 9, 10},
+	{16, 16, 40},
+	{16, 30, 99}
+};
+
+extern int col;
+extern int row;
 const int header = 150;
 extern int mines;
 
