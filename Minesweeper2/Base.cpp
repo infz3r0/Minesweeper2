@@ -3,13 +3,13 @@
 
 bool isDevMode = false;
 
-int mines = 40;
+int mines = 99;
 
 int squareLength = 20;
 int border = squareLength / 2;
 
 int screenW = (col + 1) * squareLength;
-int screenH = (row + 1) * squareLength + 100;
+int screenH = (row + 1) * squareLength + header;
 
 GLdouble left = 0;
 GLdouble right = screenW;

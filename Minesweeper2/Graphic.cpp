@@ -1,7 +1,7 @@
 #include "Graphic.h"
 
 int maxX = screenW;
-int maxY = screenH - 100;
+int maxY = screenH - header;
 
 void initGL() {
 	// Set "clearing" or background color
@@ -28,7 +28,7 @@ void drawBoard()
 
 		glEnd();
 
-		glFlush();
+		//glFlush();
 
 
 	}
@@ -49,10 +49,12 @@ void drawBoard()
 
 		glEnd();
 
-		glFlush();
+		//glFlush();
 
 
 	}
+
+	glFlush();
 }
 
 void drawSquare()
@@ -63,12 +65,12 @@ void drawSquare()
 	int x = 0;
 	int y = 0;
 
-	for (int i = 0; i < row; i++)
+	for (i = 0; i < row; i++)
 	{
 		for (j = 0; j < col; j++)
 		{
-			x = border + i * squareLength;
-			y = border + j * squareLength + 1;
+			x = border + j * squareLength;
+			y = border + i * squareLength + 1;
 
 			glColor3f(1.0f, 1.0f, 1.0f);
 			glBegin(GL_QUADS);
@@ -80,9 +82,11 @@ void drawSquare()
 
 			glEnd();
 
-			glFlush();
+			
 		}
 	}
+
+	glFlush();
 }
 
 void colorSquare(int x, int y, GLfloat red, GLfloat green, GLfloat blue)

@@ -18,8 +18,9 @@ ADVANCED 16rx30c 99
 Số dòng, cột
 Số lượng bom
 */
-const int col = 16;
+const int col = 30;
 const int row = 16;
+const int header = 150;
 extern int mines;
 
 // Kích thước ô
