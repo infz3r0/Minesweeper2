@@ -28,6 +28,7 @@ void restart()
 {
 	initArray(array);
 	resetFlag(flag);
+	gameover = false;
 	glutPostRedisplay();
 }
 
