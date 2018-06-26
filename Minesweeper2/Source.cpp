@@ -407,7 +407,7 @@ int main(int argc, char** argv) {
 	//glutInitDisplayMode(GLUT_DOUBLE);  // Enable double buffered mode
 	glutInitWindowSize(screenW, screenH);   // Set the window's initial width & height - non-square
 	glutInitWindowPosition(500, 50); // Position the window's initial top-left corner
-	glutCreateWindow("Testing");  // Create window with the given title
+	glutCreateWindow("Minesweeper 2018");  // Create window with the given title
 
 	glutDisplayFunc(display);       // Register callback handler for window re-paint event
 	glutReshapeFunc(reshape);       // Register callback handler for window re-size event
