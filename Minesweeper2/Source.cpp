@@ -123,8 +123,13 @@ void openSquare(int wx, int wy)
 		{
 			colorSquare(wx, wy, 1.0f, 1.0f, 1.0f);
 		}
+		colorSquare(wx, wy, 0.96f, 0.96f, 0.96f);
 		drawNumber(countMine, wx, wy);
 
+		if (countMine == 0)
+		{
+			colorSquare(wx, wy, 0.85f, 0.85f, 0.85f);
+		}
 		array[i][j] = 1;
 
 		if (countMine == 0)
