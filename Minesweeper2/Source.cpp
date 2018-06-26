@@ -1,5 +1,6 @@
 ﻿#include "Graphic.h"
 #include "Header.h"
+#include "Timer.h"
 
 bool gameover = false;
 
@@ -22,12 +23,14 @@ void gameOver(bool isWin)
 	drawString(s, 10, 50);
 	//stop mouse event
 	gameover = true;
+	stopTimer();
 }
 
 void restart()
 {
 	initArray(array);
 	resetFlag(flag);
+	resetTimer();
 	gameover = false;
 	
 	glutPostRedisplay();
@@ -83,6 +86,10 @@ void openSquare(int wx, int wy)
 	if (!isValidClick(wx, wy))
 	{
 		return;
+	}
+	if (!running)
+	{
+		startTimer();
 	}
 	/*point wtest = { wx, wy };
 	point ctest = convertCoordWindowToClip(wtest);
@@ -369,10 +376,17 @@ void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integ
 	glutReshapeWindow(screenW, screenH);
 }
 
+void Timer(int value) {
+	updateTime();      // Post re-paint request to activate display()
+	glutTimerFunc(1000, Timer, 0); // next Timer call milliseconds later
+}
+
 /* Main function: GLUT runs as a console application starting at main()  */
 int main(int argc, char** argv) {
 	initArray(array);
 	//showArray(array);
+
+	initTimer();
 
 	glutInit(&argc, argv);          // Initialize GLUT
 	//glutInitDisplayMode(GLUT_DOUBLE);  // Enable double buffered mode
@@ -385,6 +399,7 @@ int main(int argc, char** argv) {
 	glutMouseFunc(mouse);
 	glutMotionFunc(motion);
 	glutPassiveMotionFunc(passiveMotion);
+	glutTimerFunc(0, Timer, 0);
 
 	initGL();
 	glutMainLoop();           // Enter the event-processing loop
