@@ -24,6 +24,8 @@ void drawNumber(int num, int x, int y);
 // Vẽ chuỗi
 void drawString(char *s, int x, int y);
 
+void drawString(char *s, int x, int y, void *font);
+
 // Xóa chuỗi
 void clearString(int wx, int wy);
 

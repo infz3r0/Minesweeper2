@@ -190,6 +190,33 @@ void drawString(char *s, int x, int y)
 	glFlush();
 }
 
+void drawString(char *s, int x, int y, void *font)
+{
+	int len = (int)strlen(s);
+
+	int cx = x;
+	int cy = screenH - y;
+
+	GLfloat red = 0.0f;
+	GLfloat green = 0.0f;
+	GLfloat blue = 0.0f;
+
+	int padding = 0;
+
+	glColor3f(red, green, blue);
+	glRasterPos2i(cx + padding, cy + padding);
+	for (int i = 0; i < len; i++)
+	{
+		glutBitmapCharacter(font, s[i]);
+
+		if (isDevMode)
+			printf("%c", s[i]);
+
+	}
+
+	glFlush();
+}
+
 void clearString(int wx, int wy)
 {
 	int cx = wx;
@@ -232,7 +259,7 @@ void updateMines()
 	char s[18];
 	buf = sprintf_s(s, 18, "Mines left: %d", minesLeft);
 
-	clearString(10, 102);
+	clearString(10, header + 2);
 	drawString(s, 10, header);
 }
 

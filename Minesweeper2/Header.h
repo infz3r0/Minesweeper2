@@ -47,3 +47,5 @@ void buttonPressing(button btn);
 void drawModeBtn();
 
 void drawString(const char *s, int x, int y, rgb color, int padding_left);
+
+void drawBox(int cx_bot_left, int cy_bot_left, int cx_top_right, int cy_top_right, rgb border, rgb fill);

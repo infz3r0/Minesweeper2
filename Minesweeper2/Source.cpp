@@ -11,16 +11,26 @@ void gameOver(bool isWin)
 
 	//message
 	char s[20];
+	rgb border;
+	rgb fill;
+	int text;
 	if (isWin)
 	{
 		sprintf_s(s, 20, "YOU WIN");
+		border = { 0, 0.85f, 0 };
+		fill = { 0.85f, 1, 0.85f };
+		text = 50;
 	}
 	else
 	{
 		sprintf_s(s, 20, "GAME OVER");
+		border = { 1.0f, 0, 0 };
+		fill = { 1, 0.55f, 0.55f };		
+		text = 70;
 	}
-	
-	drawString(s, 10, 50);
+	int cy = screenH - (header + screenH / 4);
+	drawBox(1, cy - 10, screenW - 1, cy + 25, border, fill);
+	drawString(s, screenW / 2 - text, header + screenH / 4, GLUT_BITMAP_TIMES_ROMAN_24);
 	//stop mouse event
 	gameover = true;
 	stopTimer();
